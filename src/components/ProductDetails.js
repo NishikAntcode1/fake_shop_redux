@@ -30,7 +30,7 @@ const ProductDetails = () => {
         return () => {
             dispatch(removeSelectedProduct())
         }
-    }, [productId])
+    }, [productId]);
     
 
   return (
