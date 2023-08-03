@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ProductComponent from './ProductComponent'
 import axios from 'axios'
 import { setProducts } from '../redux/actions/productActions'
 
 const ProductListing = () => {
+    const products = useSelector((state) => state.allProducts.products);
 
-    const [allProducts, setAllProducts] = useState([]);
 
 
     const dispatch = useDispatch();
@@ -21,11 +21,11 @@ const ProductListing = () => {
         await axios.get('https://fakestoreapi.com/products')
         .then((response) => {
             dispatch(setProducts(response.data));
-            setAllProducts(response.data);
         }).catch((err) => {
             console.log(err)
         });
     }
+    console.log("Products :", products);
 
   return (
     <div>
@@ -33,13 +33,7 @@ const ProductListing = () => {
         Product listing 
         </div>
         <div className='grid grid-cols-4 justify-items-center  gap-4 '>
-            {
-                allProducts.map((index, value) => {
-                    return (
-                        <ProductComponent key={index}/>
-                    )
-                })
-            }
+            <ProductComponent/>
         </div>
     </div>
   )

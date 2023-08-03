@@ -23,7 +23,7 @@ const ProductDetails = () => {
     }
 
     useEffect(() => {
-        if(productId && productId != " ")
+        if(productId && productId !== " ")
         {
             fetchProductDetails();
         }
